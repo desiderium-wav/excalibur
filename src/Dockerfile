@@ -4,6 +4,6 @@ WORKDIR /
 
 COPY . .
 
-RUN go build Excalibur
+RUN go build -o excalibur main.go
 
 CMD [ "./Excalibur" ]
