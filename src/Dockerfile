@@ -6,9 +6,9 @@ COPY src/go.mod src/go.sum ./
 
 RUN go mod download
 
-COPY src/ .
+COPY . .
 
-RUN go build -o excalibur .
+RUN go build -o excalibur main.go
 
 FROM gcr.io/distroless/base-debian12
 
