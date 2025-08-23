@@ -1,9 +1,19 @@
-FROM golang:latest
+FROM golang:1.22 AS builder
 
-WORKDIR /
+WORKDIR /app
 
-COPY . .
+COPY src/go.mod src/go.sum ./
 
-RUN go build -o excalibur src/main.go
+RUN go mod download
 
-CMD [ "./excalibur" ]
+COPY src/ .
+
+RUN go build -o excalibur .
+
+FROM gcr.io/distroless/base-debian12
+
+WORKDIR /app
+
+COPY --from=builder /app/excalibur .
+
+CMD [ "/app/excalibur" ]
