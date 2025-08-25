@@ -6,7 +6,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o excalibur ./src
+RUN go build -o excalibur .
 
 FROM alpine:latest
 WORKDIR /app
