@@ -6,6 +6,8 @@ RUN go mod download
 
 COPY . .
 
+RUN echo "Files in /app:" && ls -l /app
+
 RUN go build -o excalibur .
 
 FROM alpine:latest
